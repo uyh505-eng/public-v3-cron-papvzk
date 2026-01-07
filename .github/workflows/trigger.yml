@@ -1,0 +1,13 @@
+name: Trigger Vercel Cron V3
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */4 * * *'
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hit Vercel Endpoint
+        run: |
+          curl -m 30 -X GET https://v0-twitter-x-posting-app-3.vercel.app/api/cron
+          echo "Successfully triggered V3 at $(date)"
